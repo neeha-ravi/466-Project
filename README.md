@@ -34,6 +34,7 @@ python3 run_models.py
 ## Workflow
 
 - **Data Preparation**: The dataset is loaded and pre-processed.
+
 - **Model Training**: The Models are trained on the training set.
 - **Evaluation**: The model is evaluated on the validation and test sets using accuracy and MSE metrics.
 - **Prediction**: The model predicts the performance index for a new student based on the corresponding input data.
