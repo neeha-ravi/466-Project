@@ -5,7 +5,7 @@ from sklearn.metrics import accuracy_score, mean_squared_error
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 
-def run_naive_bayes():
+def run_naive_bayes(values):
     data = get_data()
 
     label_encoder = LabelEncoder()
@@ -48,7 +48,7 @@ def run_naive_bayes():
 
 
     # Predict performance index for a new student with new data
-    new_student = pd.DataFrame([[5, 10, 'No', 9, 3]], columns=['Hours Studied', 'Previous Scores', 'Extracurricular Activities', 'Sleep Hours', 'Sample Question Papers Practiced'])
+    new_student = pd.DataFrame([values], columns=['Hours Studied', 'Previous Scores', 'Extracurricular Activities', 'Sleep Hours', 'Sample Question Papers Practiced'])
 
     new_student['Extracurricular Activities'] = label_encoder.transform(new_student['Extracurricular Activities'])
 
@@ -56,3 +56,12 @@ def run_naive_bayes():
     predicted_performance_index = model.predict(new_student_scaled)
     print()
     print(f'Predicted Performance Index for the new student: {predicted_performance_index[0]}')
+
+    metrics = f"""
+Validation Accuracy: {val_accuracy}
+Validation Mean Squared Error: {val_mse}
+Test Accuracy: {test_accuracy}
+Test Mean Squared Error: {test_mse}
+    """
+
+    return [predicted_performance_index[0], metrics]
