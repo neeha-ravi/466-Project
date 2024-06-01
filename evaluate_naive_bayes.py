@@ -7,7 +7,7 @@ from sklearn.metrics import accuracy_score, mean_squared_error, confusion_matrix
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 import seaborn as sns
 
-def run_naive_bayes_with_comprehensive_evaluation():
+def evaluate_naive_bayes():
     data = get_data()
 
     label_encoder = LabelEncoder()
@@ -85,4 +85,4 @@ def get_data():
     return data
 
 if __name__ == "__main__":
-    run_naive_bayes_with_comprehensive_evaluation()
+    evaluate_naive_bayes()
