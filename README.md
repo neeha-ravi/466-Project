@@ -1,5 +1,7 @@
 # Assessing the Elements Affecting Academic Achievement
 
+
+
 This project aims to analyze the factors that contribute to the academic performance of students and aims to answer the important question of what factors have a major impact on GPA. Based on the hypothesis that hours studied, previous scores, extracurricular activities, sleep hours, and sample question papers practiced are important factors in determining performance. Our main objective is to successfully predict performance and provide useful insights by using skills learned in class to establish the connections between these predictor variables and the performance index of a student.
 
 ## Requirements
