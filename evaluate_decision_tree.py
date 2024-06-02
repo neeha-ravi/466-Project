@@ -24,7 +24,20 @@ def evaluate_decision_tree():
     X_val = scaler.transform(X_val)
     X_test = scaler.transform(X_test)
 
-    model = DecisionTreeClassifier()
+    depth_range = range(1, 21)  # Example range from 1 to 20
+    cv_scores = []
+
+    # Perform cross-validation for each depth value
+    for depth in depth_range:
+        tree = DecisionTreeClassifier(max_depth=depth, random_state=42)
+        scores = cross_val_score(tree, X, y, cv=10, scoring='accuracy')  # 10-fold cross-validation
+        cv_scores.append(np.mean(scores))
+
+    # Determine the optimal depth
+    optimal_depth = depth_range[np.argmax(cv_scores)]
+    print(f"Optimal tree depth: {optimal_depth}")
+
+    model = DecisionTreeClassifier(max_depth=optimal_depth)
     model.fit(X_train, y_train)
 
     # validation set evaluation
