@@ -1,5 +1,6 @@
 import gradio as gr
 from models.naive_bayes import *
+from models.decision_tree import *
 from sklearn.preprocessing import LabelEncoder
 
 def handle_model(model, hours, prev_act, activities, sleep, q_paper):
@@ -7,11 +8,15 @@ def handle_model(model, hours, prev_act, activities, sleep, q_paper):
         values = [hours, prev_act, activities, sleep, q_paper]
         val = run_naive_bayes(values)
         return {pi: gr.Textbox(value=val[0]), metrics: gr.Textbox(value=val[1].strip())}
+    elif model == 'Decision Tree':
+        values = [hours, prev_act, activities, sleep, q_paper]
+        val = run_decision_tree(values)
+        return {pi: gr.Textbox(value=val[0]), metrics: gr.Textbox(value=val[1].strip())}
 
 with gr.Blocks(title='Student Performance Index Predictor') as demo:
     with gr.Row():
         with gr.Column():
-            model = gr.Dropdown(choices=['Naive Bayes', 'Deicsion Tree'], label='Pick a model')
+            model = gr.Dropdown(choices=['Naive Bayes', 'Decision Tree'], label='Pick a model')
         with gr.Column():
             with gr.Row():
                 hours = gr.Textbox(label='Hours Studied')
